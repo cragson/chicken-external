@@ -12,6 +12,12 @@
     <Filter Include="Files\Process">
       <UniqueIdentifier>{cf2814bc-a9cd-4e88-a805-c9a0933d30a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Files\Includings">
+      <UniqueIdentifier>{f32bc1b2-5b7e-4f0e-8915-3da0314ec885}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\SDK">
+      <UniqueIdentifier>{55ad5716-078e-42a7-9e5d-b9e80e4308c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,6 +30,15 @@
   <ItemGroup>
     <ClInclude Include="process.hpp">
       <Filter>Files\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameSession.hpp">
+      <Filter>Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="offsets.hpp">
+      <Filter>Files\Includings</Filter>
+    </ClInclude>
+    <ClInclude Include="structs.hpp">
+      <Filter>Files\Includings</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

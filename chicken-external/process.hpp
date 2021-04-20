@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <string>
+#include <vector>
 
 class process
 {
@@ -62,7 +63,9 @@ public:
 	bool setup_process ( const std::wstring& window_name );
 
 
-	uint64_t get_image_base ( const std::wstring& image_name ) const;
+	[[nodiscard]] uint32_t get_image_base ( const std::wstring& image_name ) const;
+
+	bool patch_bytes( const std::vector < byte > & bytes, const std::uintptr_t address, const size_t size );
 
 
 private:
