@@ -30,9 +30,9 @@ bool process::setup_process ( const std::wstring& window_name )
 }
 
 
-uint64_t process::get_image_base ( const std::wstring& image_name ) const
+uint32_t process::get_image_base ( const std::wstring& image_name ) const
 {
-	uint64_t      ret             = 0;
+	uint32_t      ret             = 0;
 	
 	MODULEENTRY32 me32            = { sizeof ( MODULEENTRY32 ) };
 	
@@ -47,7 +47,7 @@ uint64_t process::get_image_base ( const std::wstring& image_name ) const
 		{
 			if ( image_name == me32.szModule )
 			{
-				ret = reinterpret_cast < uint64_t > ( me32.modBaseAddr );
+				ret = reinterpret_cast < uint32_t > ( me32.modBaseAddr );
 				break;
 			}
 		} while ( Module32Next ( snapshot_handle, &me32 ) );
@@ -56,4 +56,26 @@ uint64_t process::get_image_base ( const std::wstring& image_name ) const
 	CloseHandle ( snapshot_handle );
 	
 	return ret;
+}
+
+bool process::patch_bytes( const std::vector< byte >& bytes, const std::uintptr_t address, const size_t size )
+{
+	if( bytes.empty() || !address || !size || bytes.size() > size )
+		return false;
+
+	DWORD buffer = 0;
+	
+	if( !VirtualProtectEx ( this->m_handle, reinterpret_cast< LPVOID >( address ), size, PAGE_EXECUTE_READWRITE, &buffer ) )
+		return false;
+
+	for( size_t i = 0; i < size; i++ )
+		this->write< byte >( address + i, 0x90 );
+
+	for( size_t i = 0; i < bytes.size(); i++ )
+		this->write< byte >( address + i, bytes.at( i ) );
+
+	if( !VirtualProtectEx ( this->m_handle, reinterpret_cast< LPVOID >( address ), size, buffer, &buffer ) )
+		return false;
+	
+	return true;
 }
