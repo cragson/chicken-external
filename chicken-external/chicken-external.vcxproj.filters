@@ -18,6 +18,18 @@
     <Filter Include="Files\SDK">
       <UniqueIdentifier>{55ad5716-078e-42a7-9e5d-b9e80e4308c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Files\SDK\Interfaces">
+      <UniqueIdentifier>{ba8986ad-6ee7-41c3-ac19-3d22df20d0c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\SDK\Interfaces\GameSession">
+      <UniqueIdentifier>{06e4abcb-e874-45f1-9e83-928e1f841224}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Cheat">
+      <UniqueIdentifier>{ba33cc29-2729-4215-93b6-a2c9b6de4634}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Cheat\Features">
+      <UniqueIdentifier>{d817e04c-b7de-44e2-818b-18d85beff215}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -26,18 +38,42 @@
     <ClCompile Include="process.cpp">
       <Filter>Files\Process</Filter>
     </ClCompile>
+    <ClCompile Include="IGameSession.cpp">
+      <Filter>Files\SDK\Interfaces\GameSession</Filter>
+    </ClCompile>
+    <ClCompile Include="cheat.cpp">
+      <Filter>Files\Cheat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="process.hpp">
       <Filter>Files\Process</Filter>
     </ClInclude>
-    <ClInclude Include="IGameSession.hpp">
-      <Filter>Files\SDK</Filter>
-    </ClInclude>
     <ClInclude Include="offsets.hpp">
       <Filter>Files\Includings</Filter>
     </ClInclude>
     <ClInclude Include="structs.hpp">
+      <Filter>Files\Includings</Filter>
+    </ClInclude>
+    <ClInclude Include="interfaces.hpp">
+      <Filter>Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameSession.hpp">
+      <Filter>Files\SDK\Interfaces\GameSession</Filter>
+    </ClInclude>
+    <ClInclude Include="image_info.hpp">
+      <Filter>Files\Includings</Filter>
+    </ClInclude>
+    <ClInclude Include="feature.hpp">
+      <Filter>Files\Cheat\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_ammo_patch.hpp">
+      <Filter>Files\Cheat\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="cheat.hpp">
+      <Filter>Files\Cheat</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.hpp">
       <Filter>Files\Includings</Filter>
     </ClInclude>
   </ItemGroup>
