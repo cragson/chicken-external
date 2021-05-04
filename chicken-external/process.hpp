@@ -99,10 +99,10 @@ public:
 	}
 
 
-	bool patch_bytes ( const std::vector < byte >& bytes , std::uintptr_t address , size_t size );
+	bool patch_bytes ( const std::vector < std::byte >& bytes , const std::uintptr_t address , const size_t size );
 
 
-	bool patch_bytes ( const std::byte bytes[] , std::uintptr_t address , size_t size );
+	bool patch_bytes ( const std::byte bytes[] , const std::uintptr_t address , const size_t size );
 
 
 	bool nop_bytes ( std::uintptr_t address , size_t size );

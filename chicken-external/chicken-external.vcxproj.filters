@@ -76,5 +76,11 @@
     <ClInclude Include="utils.hpp">
       <Filter>Files\Includings</Filter>
     </ClInclude>
+    <ClInclude Include="ft_score_patch.hpp">
+      <Filter>Files\Cheat\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_time_adder.hpp">
+      <Filter>Files\Cheat\Features</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

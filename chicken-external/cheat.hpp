@@ -18,6 +18,8 @@ public:
 
 	void run();
 
+	void shutdown();
+
 private:
 
 	std::vector< std::unique_ptr < feature > > m_features;

@@ -152,6 +152,8 @@
     <ClInclude Include="cheat.hpp" />
     <ClInclude Include="feature.hpp" />
     <ClInclude Include="ft_ammo_patch.hpp" />
+    <ClInclude Include="ft_score_patch.hpp" />
+    <ClInclude Include="ft_time_adder.hpp" />
     <ClInclude Include="IGameSession.hpp" />
     <ClInclude Include="image_info.hpp" />
     <ClInclude Include="interfaces.hpp" />
