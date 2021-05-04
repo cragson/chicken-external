@@ -52,7 +52,7 @@ bool process::setup_process ( const std::wstring& window_name )
 }
 
 
-bool process::patch_bytes ( const std::vector < byte >& bytes , const std::uintptr_t address , const size_t size )
+bool process::patch_bytes ( const std::vector < std::byte >& bytes , const std::uintptr_t address , const size_t size )
 {
 	if ( bytes.empty() || !address || !size || bytes.size() > size )
 		return false;
@@ -64,7 +64,7 @@ bool process::patch_bytes ( const std::vector < byte >& bytes , const std::uintp
 	for ( size_t i = 0; i < size; i++ )
 		this->write < byte > ( address + i, 0x90 );
 	for ( size_t i = 0; i < bytes.size(); i++ )
-		this->write < byte > ( address + i, bytes.at ( i ) );
+		this->write < std::byte > ( address + i, bytes.at ( i ) );
 	if ( !VirtualProtectEx ( this->m_handle, reinterpret_cast < LPVOID > ( address ), size, buffer, &buffer ) )
 		return false;
 	return true;

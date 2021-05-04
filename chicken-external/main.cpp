@@ -16,6 +16,7 @@ int main ()
 		Sleep ( 500 );
 	}
 	printf ( "done!\n" );
+	
 	printf ( "[+] Retrieved information about %d images!\n", g_pGame->get_map_size() );
 
 	// interface setup
@@ -35,6 +36,7 @@ int main ()
 		Sleep ( 500 );
 	}
 	printf ( "done!\n" );
+	
 	printf ( "[+] %d cheat features are ready for usage!\n\n", g_pCheat->get_features_size() );
 
 	
@@ -46,8 +48,12 @@ int main ()
 		if ( utils::is_key_pressed ( VK_END ) )
 			break;
 		
-		Sleep ( 100 );
+		Sleep ( 10 );
 	}
-	printf ( "Goodbye! :)\n" );
+
+	g_pCheat->shutdown();
+
+	printf( "Goodbye! :)\n" );
+	
 	return EXIT_SUCCESS;
 }
