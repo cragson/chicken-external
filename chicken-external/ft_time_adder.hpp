@@ -15,7 +15,7 @@ public:
 		if( current_tick_count > 400000 )
 			g_pIGameSession->set_tick_count ( 20000 );
 		else
-			g_pIGameSession->set_tick_count ( g_pIGameSession->get_tick_count() + 3000 );
+			g_pIGameSession->increase_tick_count( 3000 );
 	}
 
 	void on_enable() override
