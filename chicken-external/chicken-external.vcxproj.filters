@@ -9,9 +9,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Files\Process">
-      <UniqueIdentifier>{cf2814bc-a9cd-4e88-a805-c9a0933d30a0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Files\Includings">
       <UniqueIdentifier>{f32bc1b2-5b7e-4f0e-8915-3da0314ec885}</UniqueIdentifier>
     </Filter>
@@ -30,13 +27,22 @@
     <Filter Include="Files\Cheat\Features">
       <UniqueIdentifier>{d817e04c-b7de-44e2-818b-18d85beff215}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Files\Memory">
+      <UniqueIdentifier>{0836c196-c09f-4a98-85d2-9be6a819513c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Memory\Process">
+      <UniqueIdentifier>{cf2814bc-a9cd-4e88-a805-c9a0933d30a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Memory\Image">
+      <UniqueIdentifier>{5889aca9-d9f7-4318-bfbc-4503042e8904}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Files</Filter>
     </ClCompile>
     <ClCompile Include="process.cpp">
-      <Filter>Files\Process</Filter>
+      <Filter>Files\Memory\Process</Filter>
     </ClCompile>
     <ClCompile Include="IGameSession.cpp">
       <Filter>Files\SDK\Interfaces\GameSession</Filter>
@@ -47,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="process.hpp">
-      <Filter>Files\Process</Filter>
+      <Filter>Files\Memory\Process</Filter>
     </ClInclude>
     <ClInclude Include="offsets.hpp">
       <Filter>Files\Includings</Filter>
@@ -81,6 +87,12 @@
     </ClInclude>
     <ClInclude Include="ft_time_adder.hpp">
       <Filter>Files\Cheat\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="image_x86.hpp">
+      <Filter>Files\Memory\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="custom_data_types.hpp">
+      <Filter>Files\Includings</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

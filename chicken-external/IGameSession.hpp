@@ -42,6 +42,13 @@ public:
 		return g_pGame->read < int32_t > ( this->m_ptr + 0x20 );
 	}
 
+	bool increase_tick_count( const int32_t ticks ) const 
+	{
+		// using abs() here to make sure the tick count is not decreased
+		// undefined behaviour could happen if the tick count is overflowed..
+		return g_pGame->write< int32_t >( this->m_ptr + 0x20, this->get_tick_count() + abs( ticks ) );
+	}
+
 
 	[[nodiscard]] bool is_left_mouse_pressed () const
 	{
