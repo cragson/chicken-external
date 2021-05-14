@@ -67,9 +67,6 @@
     <ClInclude Include="IGameSession.hpp">
       <Filter>Files\SDK\Interfaces\GameSession</Filter>
     </ClInclude>
-    <ClInclude Include="image_info.hpp">
-      <Filter>Files\Includings</Filter>
-    </ClInclude>
     <ClInclude Include="feature.hpp">
       <Filter>Files\Cheat\Features</Filter>
     </ClInclude>

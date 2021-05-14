@@ -4,6 +4,7 @@
 bool process::refresh_image_map(const DWORD process_id)
 {
 	MODULEENTRY32 me32 = { sizeof(MODULEENTRY32) };
+	
 	const auto snapshot_handle = CreateToolhelp32Snapshot(TH32CS_SNAPALL, process_id);
 	if (!snapshot_handle)
 		return false;
@@ -21,15 +22,18 @@ bool process::refresh_image_map(const DWORD process_id)
 			if (this->m_images.find(me32.szModule) != this->m_images.end())
 				continue;
 
+			const auto image_base = reinterpret_cast< std::uintptr_t >( me32.modBaseAddr );
+			const auto image_size = static_cast< size_t >( me32.modBaseSize );
+			
 			// create a new object for the image name, which is the key for the map
-			this->m_images[me32.szModule] = std::make_unique< image_x86 >( reinterpret_cast<std::uintptr_t>(me32.modBaseAddr), me32.modBaseSize );
+			this->m_images[me32.szModule] = std::make_unique< image_x86 >( image_base, image_size );
 
 			// now dump the image from memory and write it into the specific byte_vector
 			// if the image could not be read, like RPM sets 299 as the error code
 			// the image will be removed from the map
 			// smart ptr should take care of collecting the garbage
 			if( !this->read_image( this->m_images[me32.szModule]->get_byte_vector_ptr(), me32.szModule ) )
-				this->m_images.erase( me32.szModule );
+				this->m_images.erase(me32.szModule);
 
 		} while (Module32Next(snapshot_handle, &me32));
 	}
@@ -45,25 +49,39 @@ bool process::setup_process(const std::wstring& window_name)
 	// First try to retrieve a window handle, the process id and a handle to the process with specific rights.
 	if ( window_name.empty() )
 		return false;
+	
 	const auto window_handle = FindWindowW( nullptr, window_name.c_str() );
 	if ( !window_handle )
 		return false;
+	
 	DWORD buffer = 0;
 	if ( !GetWindowThreadProcessId( window_handle, &buffer ) )
 		return false;
+	
 	const auto proc_handle = OpenProcess( PROCESS_ALL_ACCESS, FALSE, buffer );
 	if ( !proc_handle )
 		return false;
 
+	// set now the correct data
+	// Because refresh_image_map will call RPM which uses m_handle
+	// if the call 
+	this->m_hwnd = window_handle;
+	this->m_pid = buffer;
+	this->m_handle = proc_handle;
+	
 	// Before I set the retrieved data, I want to safe information about every image in the process
 	// So I iterate over every image loaded into the certain process and store them in a fresh struct :)
 	if( !this->refresh_image_map( buffer ) )
+	{
+		// because I need the correct handle in this function, I need to take care of the case where the handle is correct but images cannot be dumped
+		// so clear the retrieved data about the process here, if the function fails
+		this->m_hwnd   = nullptr;
+		this->m_pid    = 0;
+		this->m_handle = INVALID_HANDLE_VALUE;
+		
 		return false;
-
-	// finally set the new data about the process
-	this->m_hwnd   = window_handle;
-	this->m_pid    = buffer;
-	this->m_handle = proc_handle;
+	}
+	
 	return true;
 }
 
