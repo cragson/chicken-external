@@ -156,7 +156,6 @@
     <ClInclude Include="ft_score_patch.hpp" />
     <ClInclude Include="ft_time_adder.hpp" />
     <ClInclude Include="IGameSession.hpp" />
-    <ClInclude Include="image_info.hpp" />
     <ClInclude Include="image_x86.hpp" />
     <ClInclude Include="interfaces.hpp" />
     <ClInclude Include="offsets.hpp" />
