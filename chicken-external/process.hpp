@@ -119,6 +119,14 @@ public:
 		}
 	}
 
+	[[nodiscard]] image_x86* get_image_ptr_by_name( const std::wstring & image_name ) const noexcept
+	{
+		if( !this->does_image_exist_in_map ( image_name ) )
+			return nullptr;
+
+		return this->m_images.at ( image_name ).get();
+	}
+
 
 	[[nodiscard]] size_t get_map_size() const noexcept
 	{

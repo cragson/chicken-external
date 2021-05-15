@@ -7,7 +7,7 @@
 int main()
 {
 	SetConsoleTitleW( L"calb: Moorhuhn Deluxe" );
-
+	
 	// process setup
 	printf( "[+] Waiting for the game.." );
 	while ( !g_pGame->setup_process( L"Moorhuhn Deluxe" ) )
@@ -19,7 +19,16 @@ int main()
 
 	printf( "[+] Retrieved information about %d images!\n", g_pGame->get_map_size() );
 
-	g_pGame->print_images();
+
+	printf( "[+] Searching now for signatures.." );
+	while( !cheat::setup_offsets() )
+	{
+		printf( "." );
+		Sleep( 500 );
+	}
+	printf( "done!\n" );
+
+	cheat::print_offsets();
 
 	
 	// interface setup
@@ -31,6 +40,7 @@ int main()
 	}
 	printf( "done!\n" );
 
+	
 	// features setup
 	printf( "[+] Preparing cheat features.." );
 	while ( !g_pCheat->setup_features() )
@@ -41,6 +51,7 @@ int main()
 	printf( "done!\n" );
 
 	printf( "[+] %d cheat features are ready for usage!\n\n", g_pCheat->get_features_size() );
+
 	
 	// main loop
 	while ( true )
