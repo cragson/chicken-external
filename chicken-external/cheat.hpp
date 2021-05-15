@@ -16,9 +16,14 @@ public:
 	
 	bool setup_features();
 
+	static bool setup_offsets();
+
 	void run();
 
 	void shutdown();
+
+	static void print_offsets();
+	
 
 private:
 

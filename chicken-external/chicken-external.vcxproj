@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="cheat.cpp" />
     <ClCompile Include="IGameSession.cpp" />
+    <ClCompile Include="image_x86.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="process.cpp" />
   </ItemGroup>

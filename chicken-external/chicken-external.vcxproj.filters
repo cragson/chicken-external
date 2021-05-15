@@ -50,6 +50,9 @@
     <ClCompile Include="cheat.cpp">
       <Filter>Files\Cheat</Filter>
     </ClCompile>
+    <ClCompile Include="image_x86.cpp">
+      <Filter>Files\Memory\Image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="process.hpp">
